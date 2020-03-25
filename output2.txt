@@ -1,2 +1,2 @@
 LCS Recursion Solution: 4
-Runitme: 232 microseconds (1E-6).
+Runitme: 130 microseconds (1E-6).

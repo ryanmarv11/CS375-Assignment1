@@ -4,13 +4,13 @@
 #include <string>
 #include <vector>
 #include <string>
+#include <bits/stdc++.h> 
 
 using namespace std;
 
+int max(int a, int b);
 int LCS(string a, string b);
 int LCSHelper(string a, string b, int i, int j);
-int max(int a, int b);
-
 
 int main(int argv, char **args)
 {
@@ -53,29 +53,39 @@ int main(int argv, char **args)
 		return -1;
 	}
 
+	//reads in the values from the now opened files
 	string firstString, secondString; 
 	getline(inputFile1, firstString);
-	int maxLength = LCS(firstString, secondString);
+	getline(inputFile2, secondString);
+
+
+	int maxLength;
+	if(firstString == "" || secondString == "")
+		maxLength = 0;
+	else
+		maxLength = LCS(firstString, secondString);
 	outputFile << "LCS Recursion Solution: " << maxLength << endl;
 	timer = clock() - timer;
 	outputFile << "Runitme: " << timer << " microseconds (1E-6)." << endl;
-
 	return 0;
-}
-int LCS(string a, string b){
-	return LCSHelper(a,b,0,0);
-}
-
-int LCSHelper(string a, string b, int i, int j){
-	if(a[i] == '\0' || b[j] == '\0')
-		return 0;
-	else if(a[i] == b[j])
-		return 1 + LCSHelper(a,b,i+1, j+1);
-	else
-		return max(LCSHelper(a,b,i+1, j), LCSHelper(a,b,i, j+1));
 }
 
 int max(int a, int b)  
 {  
    return (a > b)? a : b;  
 }  
+
+int LCS(string firstString, string secondString)
+{
+	return LCSHelper(firstString,secondString,0,0);
+}
+
+int LCSHelper(string firstString, string secondString, int i, int j)
+{
+	if(firstString[i] == '\0' || secondString[j] == '\0')
+		return 0;
+	else if(firstString[i] == secondString[j])
+		return LCSHelper(firstString,secondString,i+1, j+1) + 1;
+	else
+		return max(LCSHelper(firstString,secondString,i+1, j), LCSHelper(firstString,secondString,i, j+1));
+}
