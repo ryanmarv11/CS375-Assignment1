@@ -21,7 +21,7 @@ int main(int argv, char **args)
 	/* this block checks that the following things are true:
 	the number of inputs are correct
 	filex.txt can be opened and is valid filey.txt can be opened and is vaild
-	output1.txt can be opened and is valid
+	output3.txt can be opened and is valid
 	*/
 	if(argv != 4){ //check for correct amount of inputs
 		cerr << "Improper amount of arguments." << endl;
@@ -43,12 +43,12 @@ int main(int argv, char **args)
 		return -1;
 	}
 
-	outputFile.open("output1.txt");
+	outputFile.open("output3.txt");
 	if(!outputFile.is_open()){
 		inputFile1.close();
 		inputFile2.close();
 		outputFile.close();
-		cerr << "There is an issue with output1.txt." << endl;
+		cerr << "There is an issue with output3.txt." << endl;
 		return -1;
 	}
 
@@ -61,8 +61,6 @@ int main(int argv, char **args)
 
 	return 0;
 }
-
-
 
 
 int max(int a, int b)  
